@@ -1,0 +1,61 @@
+[
+  {
+    "id": "pointofsale-mobile-id",
+    "label": "pointofsale-mobile-id",
+    "microservice-url": "https://services-stage.intern.dm-drogeriemarkt.com/posmid",
+    "consumes" : [
+      "alertmessages",
+      "kcb-shop"
+    ]
+  },
+  {
+    "id": "offerandpromotion",
+    "label": "offerandpromotion",
+    "microservice-url": "https://services-stage.intern.dm-drogeriemarkt.com/offerandpromotion"
+  },
+  {
+    "id": "alertmessages",
+    "label": "alertmessages",
+    "microservice-url": "https://services-stage.intern.dm-drogeriemarkt.com/alertmessages"
+  },
+  {
+    "id": "pir",
+    "label": "pir",
+    "microservice-url": "https://services-stage.intern.dm-drogeriemarkt.com/pir"
+  },
+  {
+    "id": "customerconsent",
+    "label": "customerconsent",
+    "microservice-url": "https://services-stage.intern.dm-drogeriemarkt.com/customerconsent"
+  },
+  {
+    "id": "kcb-couponcenter",
+    "label": "kcb-couponcenter",
+    "microservice-url": "https://services-stage.intern.dm-drogeriemarkt.com/kcb-couponcenter"
+  },
+  {
+    "id": "kcb-assets",
+    "label": "kcb-assets",
+    "microservice-url": "https://services-stage.intern.dm-drogeriemarkt.com/kcb-assets"
+  },
+  {
+    "id": "productdata",
+    "label": "productdata",
+    "microservice-url": "https://services-stage.intern.dm-drogeriemarkt.com/product"
+  },
+  {
+    "id": "kcb-shop",
+    "label": "kcb-shop",
+    "microservice-url": "https://services-stage.intern.dm-drogeriemarkt.com/kcb-shop"
+  },
+  {
+    "id": "kcb-servicecenter",
+    "label": "kcb-servicecenter",
+    "microservice-url": "https://services-stage.intern.dm-drogeriemarkt.com/kcb-servicecenter"
+  },
+  {
+    "id": "pir-gui",
+    "label": "pir-gui",
+    "microservice-url": "https://services-stage.intern.dm-drogeriemarkt.com/pir-gui"
+  }
+]
