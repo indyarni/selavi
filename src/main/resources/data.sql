@@ -1,0 +1,1 @@
+INSERT INTO service_properties (id, content) VALUES ('customerconsent', '{"id": "customerconsent", "label": "customerconsent", "microservice-url": "https://services-dev.intern.dm-drogeriemarkt.com/customerconsent", "tag": "zoe", "consumes": ["promotions", "pir-gui", "productdata"]}');
