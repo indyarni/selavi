@@ -27,9 +27,6 @@ public class BitbucketService {
 
     private static final Logger LOG = LoggerFactory.getLogger(BitbucketService.class);
 
-    private static final String BITBUCKET_URL = "bitbucketUrl";
-    private static final String IGNORED_COMMITTERS = "ignoredCommitters";
-
     private final RestTemplate restTemplate;
     private final String bitbucketCredentials;
     private final Integer numberOfTopCommiters;
@@ -58,7 +55,7 @@ public class BitbucketService {
         return result;
     }
 
-    public Map<BitbucketAuthorDto, Long> getTopCommitters(String stage, String microserviceId) {
+    private Map<BitbucketAuthorDto, Long> getTopCommitters(String stage, String microserviceId) {
         final MicroserviceDto microserviceDto = microserviceContentProviderService.getAllMicroservices(stage).get(microserviceId);
 
         final String bitbucketUrl = microserviceDto.getBitbucketUrl();
@@ -69,8 +66,6 @@ public class BitbucketService {
         }
 
         return Collections.emptyMap();
-
-
     }
 
     private Map<BitbucketAuthorDto, Long> handleResponse(ResponseEntity<BitbucketCommitsDto> responseEntity, String ignoredCommiters2) {

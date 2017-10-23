@@ -1,5 +1,5 @@
 # SeLaVi
-SeLaVi (ServiceLandscapeVisualizer) displays all mircoservices that are registered in a service registry and their relations to each other in a graphical mindmap.
+SeLaVi (ServiceLandscapeVisualizer) displays all microservices that are registered in a service registry and their relations to each other in a graphical mindmap.
 
 ## Building the Application
 
