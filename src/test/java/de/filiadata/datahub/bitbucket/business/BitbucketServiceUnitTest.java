@@ -47,7 +47,7 @@ public class BitbucketServiceUnitTest {
         }))).thenReturn(getResponseEntity());
 
         final BitbucketService bitbucketService = new BitbucketService(restTemplate, "foo:bar", 3, microserviceContentProviderService);
-        final List<TopCommitterDto> topCommiters = bitbucketService.getNamedTopCommitter("dev","mocro01");
+        final List<TopCommitterDto> topCommiters = bitbucketService.findNamedTopCommitters("dev", "mocro01");
         assertThat(topCommiters.size(), is(3));
     }
 
@@ -57,11 +57,10 @@ public class BitbucketServiceUnitTest {
         }))).thenReturn(getEmptyResponseEntity());
 
         final BitbucketService bitbucketService = new BitbucketService(restTemplate, "foo:bar", 3, microserviceContentProviderService);
-        final List<TopCommitterDto> topCommiters = bitbucketService.getNamedTopCommitter("dev", "mocro01");
+        final List<TopCommitterDto> topCommiters = bitbucketService.findNamedTopCommitters("dev", "mocro01");
 
         assertTrue(topCommiters.isEmpty());
     }
-
 
 
     @Test
@@ -71,7 +70,7 @@ public class BitbucketServiceUnitTest {
         }))).thenReturn(getResponseEntity());
 
         final BitbucketService bitbucketService = new BitbucketService(restTemplate, "foo:bar", 3, microserviceContentProviderService);
-        final List<TopCommitterDto> topCommiters = bitbucketService.getNamedTopCommitter("dev", "mocro01");
+        final List<TopCommitterDto> topCommiters = bitbucketService.findNamedTopCommitters("dev", "mocro01");
         assertThat(topCommiters.get(0).getEmailAddress(), is("foo1@bar.de"));
         assertThat(topCommiters.get(1).getEmailAddress(), is("foo4@bar.de"));
         assertThat(topCommiters.get(2).getEmailAddress(), is("foo2@bar.de"));
@@ -85,11 +84,11 @@ public class BitbucketServiceUnitTest {
     private ResponseEntity<BitbucketCommitsDto> getEmptyResponseEntity() {
         final BitbucketCommitsDto bitbucketCommitsDto = BitbucketCommitsDto.builder().lastPage(true).limit(10).nextPageStart(10).size(10).start(0).build();
         bitbucketCommitsDto.setValues(new ArrayList<>());
-        return new ResponseEntity<>(bitbucketCommitsDto,HttpStatus.OK);
+        return new ResponseEntity<>(bitbucketCommitsDto, HttpStatus.OK);
     }
 
 
-    private BitbucketCommitsDto getMockedBitbucketCommitsDto(){
+    private BitbucketCommitsDto getMockedBitbucketCommitsDto() {
         final BitbucketCommitsDto bitbucketCommitsDto = BitbucketCommitsDto.builder().lastPage(true).limit(10).nextPageStart(10).size(10).start(0).build();
         bitbucketCommitsDto.setValues(new ArrayList<>());
         bitbucketCommitsDto.getValues().add(BitbucketCommitterDto.builder().author(BitbucketAuthorDto.builder().displayName("Foo1 Bar1").emailAddress("foo1@bar.de").id(1L).build()).build());
