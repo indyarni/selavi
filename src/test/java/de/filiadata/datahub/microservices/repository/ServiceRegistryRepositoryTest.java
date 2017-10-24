@@ -1,5 +1,6 @@
 package de.filiadata.datahub.microservices.repository;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import de.filiadata.datahub.microservices.business.DefaultNodeContentFactory;
 import de.filiadata.datahub.microservices.business.MicroserviceDtoFactory;
 import de.filiadata.datahub.microservices.business.ServiceRegistryProperties;
@@ -24,6 +25,7 @@ public class ServiceRegistryRepositoryTest {
     private String offlineMode;
     private MicroserviceDtoFactory microserviceDtoFactory;
     private ServiceRegistryProperties serviceRegistryProperties;
+    private ObjectMapper mapper = new ObjectMapper();
 
     @Before
     public void setup() {
@@ -35,7 +37,7 @@ public class ServiceRegistryRepositoryTest {
         microserviceDtoFactory = mock(MicroserviceDtoFactory.class);
         serviceRegistryProperties = new ServiceRegistryProperties();
 
-        serviceRegistryRepository = new ServiceRegistryRepository(restTemplate, defaultNodeContentFactory, offlineMode, microserviceDtoFactory, serviceRegistryProperties);
+        serviceRegistryRepository = new ServiceRegistryRepository(restTemplate, defaultNodeContentFactory, offlineMode, microserviceDtoFactory, serviceRegistryProperties, mapper);
     }
 
     @Test

@@ -3,8 +3,6 @@ package de.filiadata.datahub.microservices.business;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.filiadata.datahub.microservices.domain.ConsumeDto;
-import de.filiadata.datahub.microservices.domain.HostDto;
 import de.filiadata.datahub.microservices.domain.MicroserviceDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,7 +39,7 @@ public class MicroserviceDtoFactory {
         return null;
     }
 
-    public String getJsonFromMicroserviceDto(final MicroserviceDto dto) {
+    String getJsonFromMicroserviceDto(final MicroserviceDto dto) {
         try {
             return mapper.writeValueAsString(dto);
         } catch (JsonProcessingException e) {
