@@ -19,8 +19,8 @@ public class ActiveDirectoryService {
 		this.ldapTemplate = ldapTemplate;
 	}
 
-	public List<Person> getAllPersonNames(String query) {
-		String ldapQuery = "*" + query + "*";
+	public List<Person> findPersonsByName(String name) {
+		String ldapQuery = "*" + name + "*";
 		ldapQuery = ldapQuery.replace(' ', '*');
 
 		final ContainerCriteria containerCriteria = query()

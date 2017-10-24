@@ -20,7 +20,7 @@ public class UserController {
     @RequestMapping("/user")
     public Person getUserDetails(Principal principal) {
 
-        List<Person> personList = activeDirectoryService.getAllPersonNames(principal.getName());
+        List<Person> personList = activeDirectoryService.findPersonsByName(principal.getName());
         if (personList.size() == 1) {
             return personList.get(0);
         }

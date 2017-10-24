@@ -21,6 +21,6 @@ public class PersonSearchController {
 
     @GetMapping("/person/search")
     public ResponseEntity<List<Person>> serachForPersons(@RequestParam String searchQuery) {
-        return new ResponseEntity<>(this.activeDirectoryService.getAllPersonNames(searchQuery), HttpStatus.OK);
+        return new ResponseEntity<>(this.activeDirectoryService.findPersonsByName(searchQuery), HttpStatus.OK);
     }
 }

@@ -1,6 +1,5 @@
 package de.filiadata.datahub.common;
 
-import com.sun.security.auth.LdapPrincipal;
 import de.filiadata.datahub.activedirectory.business.ActiveDirectoryService;
 import de.filiadata.datahub.activedirectory.domain.Person;
 import org.junit.Before;
@@ -35,7 +34,7 @@ public class UserControllerTest {
         Principal principal = () -> "foobar";
 
         Person user = Person.builder().build();
-        when(activeDirectoryService.getAllPersonNames("foobar")).thenReturn(Arrays.asList(user));
+        when(activeDirectoryService.findPersonsByName("foobar")).thenReturn(Arrays.asList(user));
 
         Person result = userController.getUserDetails(principal);
 
@@ -47,7 +46,7 @@ public class UserControllerTest {
 
         Principal principal = () -> "foobar";
 
-        when(activeDirectoryService.getAllPersonNames("foobar")).thenReturn(Collections.emptyList());
+        when(activeDirectoryService.findPersonsByName("foobar")).thenReturn(Collections.emptyList());
 
         Person result = userController.getUserDetails(principal);
 
