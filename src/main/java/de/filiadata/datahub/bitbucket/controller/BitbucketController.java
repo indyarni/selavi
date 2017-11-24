@@ -1,4 +1,4 @@
-package de.filiadata.datahub.bitbucket.client.rest;
+package de.filiadata.datahub.bitbucket.controller;
 
 import de.filiadata.datahub.bitbucket.business.BitbucketService;
 import de.filiadata.datahub.bitbucket.domain.TopCommitterDto;
