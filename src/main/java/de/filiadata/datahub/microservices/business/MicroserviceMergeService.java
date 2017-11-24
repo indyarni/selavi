@@ -6,46 +6,15 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
 public class MicroserviceMergeService {
 
-    public Map<String, MicroserviceDto> mergeCompleteMicroservices(final Map<String, MicroserviceDto> microservicesFromRegistry, final Map<String, MicroserviceDto> microservicesFromPersistence) {
-        final Map<String, MicroserviceDto> mergedDtoList = new HashMap<>();
-        mergedDtoList.putAll(extractRegisteredButNotPersisted(microservicesFromRegistry, microservicesFromPersistence));
-        mergedDtoList.putAll(extractPersistedButNotRegistered(microservicesFromRegistry, microservicesFromPersistence));
-        mergedDtoList.putAll(mergeRegisteredAndPersisted(microservicesFromRegistry, microservicesFromPersistence));
-        return mergedDtoList;
-    }
-
-    private Map<String, MicroserviceDto> mergeRegisteredAndPersisted(Map<String, MicroserviceDto> microservicesFromRegistry, Map<String, MicroserviceDto> microservicesFromPersistence) {
-        return microservicesFromRegistry.values()
-                .stream()
-                .filter(dto -> microservicesFromPersistence.containsKey(dto.getId()))
-                .map(dto -> mergeMicroservice(dto, microservicesFromPersistence.get(dto.getId()))).collect(Collectors.toMap(MicroserviceDto::getId, Function.identity()));
-    }
-
-    private Map<String, MicroserviceDto> extractPersistedButNotRegistered(Map<String, MicroserviceDto> microservicesFromRegistry, Map<String, MicroserviceDto> microservicesFromPersistence) {
-        return microservicesFromPersistence.values()
-                .stream()
-                .filter(dto -> !microservicesFromRegistry.containsKey(dto.getId()))
-                .collect(Collectors.toMap(MicroserviceDto::getId, Function.identity()));
-    }
-
-    private Map<String, MicroserviceDto> extractRegisteredButNotPersisted(Map<String, MicroserviceDto> microservicesFromRegistry, Map<String, MicroserviceDto> microservicesFromPersistence) {
-        return microservicesFromRegistry.values()
-                .stream()
-                .filter(dto -> !microservicesFromPersistence.containsKey(dto.getId()))
-                .collect(Collectors.toMap(MicroserviceDto::getId, Function.identity()));
-    }
-
-    public MicroserviceDto mergeMicroservice(MicroserviceDto sourceService, MicroserviceDto serviceToMerge) {
+    public MicroserviceDto merge(MicroserviceDto sourceService, MicroserviceDto serviceToMerge) {
         Assert.notNull(sourceService);
 
         if (serviceToMerge == null) {
