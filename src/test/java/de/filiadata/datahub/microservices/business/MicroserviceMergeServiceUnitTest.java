@@ -14,7 +14,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class MicroserviceMergeServiceUnitTest {
 
-    MicroserviceMergeService microserviceMergeService = new MicroserviceMergeService();
+    private final MicroserviceMergeService microserviceMergeService = new MicroserviceMergeService();
 
     @Test
     public void mergeAllFields() {

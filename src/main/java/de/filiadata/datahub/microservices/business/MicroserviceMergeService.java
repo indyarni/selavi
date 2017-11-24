@@ -6,7 +6,6 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -14,7 +13,9 @@ import java.util.stream.Collectors;
 @Service
 public class MicroserviceMergeService {
 
-    public MicroserviceDto merge(MicroserviceDto sourceService, MicroserviceDto serviceToMerge) {
+    // suppressed because i don't have a better idea other than extract a bazillion methods making it less readable
+    @SuppressWarnings("squid:MethodCyclomaticComplexity")
+    MicroserviceDto merge(MicroserviceDto sourceService, MicroserviceDto serviceToMerge) {
         Assert.notNull(sourceService);
 
         if (serviceToMerge == null) {
@@ -83,17 +84,10 @@ public class MicroserviceMergeService {
     private void mergeConsumes(final List<ConsumeDto> consumes, final List<ConsumeDto> consumesToMerge) {
         if (consumesToMerge != null) {
             final Map<String, ConsumeDto> consumeDtoMap = consumesToMerge.stream().collect(Collectors.toMap(ConsumeDto::getTarget, consumeDto -> consumeDto));
-            final Iterator<ConsumeDto> iter = consumes.iterator();
-            while (iter.hasNext()) {
-                final ConsumeDto consumeDto = iter.next();
-                if (consumeDtoMap.get(consumeDto.getTarget()) != null) {
-                    iter.remove();
-                }
-            }
+            consumes.removeIf(consumeDto -> consumeDtoMap.get(consumeDto.getTarget()) != null);
             consumes.addAll(consumesToMerge);
         }
     }
-
 
     private void mergeHosts(MicroserviceDto sourceService, MicroserviceDto serviceToMerge) {
         if (serviceToMerge.getHosts() != null && !serviceToMerge.getHosts().isEmpty()) {
