@@ -1,1 +1,2 @@
 language: java
+script: mvn clean verify -Dspring.profiles.active=development-h2
