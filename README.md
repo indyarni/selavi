@@ -76,6 +76,8 @@ Now, as soon as a Javascript source file changes, the webpack bundle is re-build
     
 Launches the frontend test runner in watch mode, eg. re-running the tests automatically when a source (or test) file changes
 
+a
+
 ## License
 
 Copyright (c) 2017 dm-drogerie markt GmbH & Co. KG, https://dm.de
